@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AppPrototype#1</string>
+    <string name="title_home">Cocktails</string>
+    <string name="title_ingredients">Ingredients</string>
+    <string name="title_cart">Cart</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_menu">Menu</string>
+    <string name="title_activity_main">MainActivity</string>
+</resources>
