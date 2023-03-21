@@ -20,6 +20,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val db = DataBase.getDB(this)
+
+        val it = Item(null,"Bloody Mary", "Vodka") //тестовая херь, думаю будет удобнее её в отдельное окно вынести
+
+
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
@@ -32,7 +37,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_cart, R.id.navigation_favorites,
                 R.id.navigation_menu
             )
+
         )
+
+
+
         //vlad horoshiy
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
