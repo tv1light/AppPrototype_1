@@ -8,7 +8,9 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface Dao {
     @Insert
-    fun instertItem(item: Item)
+    fun insertItem(item: Item)
     @Query("SELECT * FROM Items")
     fun getItems(): Flow<List<Item>>
+    @Query("DELETE FROM Items")
+    fun nukeTable()
 }

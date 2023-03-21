@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,9 +26,54 @@
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@id/nav_view"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:navGraph="@navigation/mobile_navigation" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="530dp"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="@+id/nav_view"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/edCoct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-550dp"
+        android:ems="10"
+        android:hint="Coctail"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/nav_host_fragment_activity_main"
+        app:layout_constraintTop_toBottomOf="@+id/nav_host_fragment_activity_main" />
+
+    <EditText
+        android:id="@+id/edIngr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:ems="10"
+        android:hint="Ingridient"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/edCoct"
+        app:layout_constraintStart_toStartOf="@+id/edCoct"
+        app:layout_constraintTop_toBottomOf="@+id/edCoct" />
+
+    <Button
+        android:id="@+id/buttonNuke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nuke"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSave"
+        app:layout_constraintStart_toStartOf="@+id/nav_view"
+        tools:layout_editor_absoluteY="35dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

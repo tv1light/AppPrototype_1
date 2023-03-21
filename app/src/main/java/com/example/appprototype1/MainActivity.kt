@@ -20,10 +20,27 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         val db = DataBase.getDB(this)
 
-        val it = Item(null,"Bloody Mary", "Vodka") //тестовая херь, думаю будет удобнее её в отдельное окно вынести
 
+
+//        val it = Item(null,"Bloody Mary", "Vodka") //тестовая херь, думаю будет удобнее её в отдельное окно вынести
+
+        binding.buttonSave.setOnClickListener{
+            val it = Item(null,
+                binding.edCoct.text.toString(),
+                binding.edIngr.text.toString())
+            Thread{
+                db.getDao().insertItem(it)
+            }.start()
+        }
+
+        binding.buttonNuke.setOnClickListener{
+            Thread{
+                db.getDao().nukeTable()
+            }.start()
+        }
 
         val navView: BottomNavigationView = binding.navView
 
@@ -37,8 +54,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_cart, R.id.navigation_favorites,
                 R.id.navigation_menu
             )
-
         )
+//        db.clearAllTables()
 
 
 
