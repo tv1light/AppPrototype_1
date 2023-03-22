@@ -9,23 +9,21 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.appprototype1.databinding.ActivityMainBinding
 
+
+@Suppress("NAME_SHADOWING")
 class MainActivity : AppCompatActivity() {
-    //vlad molodec
 
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
+        super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val db = DataBase.getDB(this)
 
-
-
-//        val it = Item(null,"Bloody Mary", "Vodka") //тестовая херь, думаю будет удобнее её в отдельное окно вынести
+//       val it = Item(null,"Bloody Mary", "Vodka") //тестовая херь, думаю будет удобнее её в отдельное окно вынести
 
         binding.buttonSave.setOnClickListener{
             val it = Item(null,
@@ -50,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home, R.id.navigation_ingredients,
-                //brbrbrbrbrb
                 R.id.navigation_cart, R.id.navigation_favorites,
                 R.id.navigation_menu
             )
@@ -58,8 +55,6 @@ class MainActivity : AppCompatActivity() {
 //        db.clearAllTables()
 
 
-
-        //vlad horoshiy
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }

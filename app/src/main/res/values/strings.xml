@@ -6,4 +6,8 @@
     <string name="title_favorites">Favorites</string>
     <string name="title_menu">Menu</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_splash_activity">Bar Card</string>
+    <string name="cocktail">Cocktail</string>
+    <string name="ingredient">Ingredient</string>
+    <string name="nuke">Nuke</string>
 </resources>
