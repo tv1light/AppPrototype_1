@@ -40,7 +40,8 @@ class MainActivity : AppCompatActivity() {
         )
 //        db.clearAllTables()
 
-
+//lade podklyuchili git, ura
+//(huy)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
