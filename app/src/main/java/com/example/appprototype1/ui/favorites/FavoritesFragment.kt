@@ -1,12 +1,14 @@
 package com.example.appprototype1.ui.favorites
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.appprototype1.DataBase
+import com.example.appprototype1.Item
 import com.example.appprototype1.databinding.FragmentFavoritesBinding
 
 class FavoritesFragment : Fragment() {
@@ -28,9 +30,21 @@ class FavoritesFragment : Fragment() {
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textFavorites
-        favoritesViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val db = DataBase.getDB(this)
+
+        binding.buttonSave.setOnClickListener{
+            val it = Item(null,
+                binding.edCoct.text.toString(),
+                binding.edIngr.text.toString())
+            Thread{
+                db.getDao().insertItem(it)
+            }.start()
+        }
+
+        binding.buttonNuke.setOnClickListener{
+            Thread{
+                db.getDao().nukeTable()
+            }.start()
         }
         return root
     }
