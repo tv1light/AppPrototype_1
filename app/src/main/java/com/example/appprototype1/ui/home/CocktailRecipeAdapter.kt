@@ -8,38 +8,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.appprototype1.Cocktail
 import com.example.appprototype1.R
-import javax.xml.transform.ErrorListener
-
-
 class CocktailRecipeAdapter(
-    private val recipes: ArrayList<Cocktail>,
+    private val data: List<Cocktail>,
     private val listener: RecyclerViewEvent
-    ) : RecyclerView.Adapter<CocktailRecipeAdapter.MyViewHolder>(){
+) : RecyclerView.Adapter<CocktailRecipeAdapter.ItemViewHolder>() {
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): CocktailRecipeAdapter.MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.recycler_item,
-            parent, false
-        )
-        return MyViewHolder(itemView)
-    }
+    //Setup variables to hold the instance of the views defined in your recyclerView item layout
+    //Kinda like the onCreate method in an Activity
+    inner class ItemViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener {
+        val name: TextView = view.findViewById(R.id.textView2)
+        val image: ImageView = view.findViewById(R.id.imageView)
 
-    override fun onBindViewHolder(holder: CocktailRecipeAdapter.MyViewHolder, position: Int) {
-        // on below line we are setting data to our text view and our image view.
-        holder.courseNameTV.text = recipes.get(position).name
-        holder.courseIV.setImageResource(recipes.get(position).image)
-    }
-
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        // on below line we are initializing our course name text view and our image view.
-        val courseNameTV: TextView = itemView.findViewById(R.id.textView2)
-        val courseIV: ImageView = itemView.findViewById(R.id.imageView)
-
-        init{
-            itemView.setOnClickListener(this)
+        init {
+            view.setOnClickListener(this)
         }
 
         override fun onClick(p0: View?) {
@@ -50,16 +31,30 @@ class CocktailRecipeAdapter(
         }
     }
 
+    //This is where you inflate the layout (Give each entry/row its look)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+        val inflatedView: View = LayoutInflater.from(parent.context)
+            .inflate(R.layout.recycler_item, parent, false)
+        return ItemViewHolder(inflatedView)
+    }
+
+    // Set values to the views we pulled out of the recycler_view_row
+    // layout file based on the position of the recyclerView
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+        val cocktail: Cocktail = data[position]
+
+        holder.name.text = cocktail.name
+        holder.image.setImageResource(cocktail.image)
+    }
+
+    //The recyclerView just wants to know how many items are currently in your dataset
     override fun getItemCount(): Int {
-        // on below line we are
-        // returning our size of our list
-        return recipes.size
+        return data.size
     }
 
     interface RecyclerViewEvent{
         fun onItemClick(position: Int)
     }
 }
-
 
 

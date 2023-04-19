@@ -1,5 +1,6 @@
 package com.example.appprototype1.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +11,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appprototype1.Cocktail
 import com.example.appprototype1.DataBase
+import com.example.appprototype1.MainActivity2
 import com.example.appprototype1.R
 import com.example.appprototype1.databinding.FragmentHomeBinding
 
 
-class HomeFragment : Fragment() {
+
+class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -42,7 +45,7 @@ class HomeFragment : Fragment() {
         val layoutManager = GridLayoutManager(context, 2)
         cocktailsRV = view.findViewById(R.id.homeRV)
         cocktailsRV.layoutManager = layoutManager
-        cocktailRecipeAdapter = CocktailRecipeAdapter(cocktailsList, context)
+        cocktailRecipeAdapter = CocktailRecipeAdapter(cocktailsList, this)
         cocktailsRV.adapter = cocktailRecipeAdapter
 
     }
@@ -66,5 +69,11 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onItemClick(position: Int) {
+        val cocktail = cocktailsList[position]
+        val intent = Intent (getActivity(), MainActivity2::class.java)
+        startActivity(intent)
     }
 }
