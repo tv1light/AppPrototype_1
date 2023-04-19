@@ -12,7 +12,7 @@ import com.example.appprototype1.Cocktail
 import com.example.appprototype1.DataBase
 import com.example.appprototype1.R
 import com.example.appprototype1.databinding.FragmentHomeBinding
-import com.example.appprototype1.ui.favorites.FavoritesFragment
+
 
 class HomeFragment : Fragment() {
 
