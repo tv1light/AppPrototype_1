@@ -50,6 +50,7 @@ class IngredientsFragment : Fragment() {
 
     private fun initializeIngredients()
     {
+        ingList = ArrayList<Ingredient>()
         ingList.add(Ingredient("Lemon", R.drawable.splash))
 
     }
