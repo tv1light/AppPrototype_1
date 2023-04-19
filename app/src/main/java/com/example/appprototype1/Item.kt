@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
 data class Item (
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
-    @ColumnInfo(name = "Coctails")
+    @ColumnInfo(name = "Name")
     var coct: String,
-    @ColumnInfo(name = "Ingridients")
-    var ingr: String,
-        )
+    @ColumnInfo(name = "Images")
+    var img: String,
+)
