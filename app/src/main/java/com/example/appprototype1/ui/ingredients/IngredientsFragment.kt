@@ -65,6 +65,7 @@ class IngredientsFragment : Fragment() {
         ingList.add(Ingredient("Lemon", R.drawable.splash))
 
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
