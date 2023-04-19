@@ -42,7 +42,6 @@ class IngredientsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initializeIngredients()
         val layoutManager = LinearLayoutManager(context)
         ingredientsRV = view.findViewById(R.id.ingredientsRV)
@@ -53,7 +52,6 @@ class IngredientsFragment : Fragment() {
 
     private fun initializeIngredients()
     {
-
         ingList = ArrayList<Ingredient>()
         Thread{
             val s = DataBase.getDB(HomeFragment()) // Считывание из бд коктейлей
@@ -63,7 +61,6 @@ class IngredientsFragment : Fragment() {
             }
         }.start()
         ingList.add(Ingredient("Lemon", R.drawable.splash))
-
     }
 
     override fun onDestroyView() {

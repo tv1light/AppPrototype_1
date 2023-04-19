@@ -8,6 +8,7 @@
     tools:context=".ui.home.HomeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:foregroundGravity="center"
         android:id="@+id/homeRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
