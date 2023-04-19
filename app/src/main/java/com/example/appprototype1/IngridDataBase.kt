@@ -10,8 +10,11 @@ data class IngridDataBase (
     var id: Int? = null,
 
     @ColumnInfo(name = "Name") //Название
-    var ingr: String,
+    var name: String,
 
     @ColumnInfo(name = "Value")// Количество
-    var value: Int
+    var value: Int,
+
+    @ColumnInfo(name = "Image")
+    var img: Int
 )

@@ -9,9 +9,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.appprototype1.Cocktail
+import com.example.appprototype1.DataBase
 import com.example.appprototype1.R
 import com.example.appprototype1.databinding.FragmentIngredientsBinding
 import com.example.appprototype1.Ingredient
+import com.example.appprototype1.ui.home.HomeFragment
 
 class IngredientsFragment : Fragment() {
 
@@ -50,7 +53,15 @@ class IngredientsFragment : Fragment() {
 
     private fun initializeIngredients()
     {
+
         ingList = ArrayList<Ingredient>()
+        Thread{
+            val s = DataBase.getDB(HomeFragment()) // Считывание из бд коктейлей
+            val db = s.getDao().getAllIngr()
+            for (i in db) {
+                ingList.add(Ingredient(i.name, R.drawable.splash))
+            }
+        }.start()
         ingList.add(Ingredient("Lemon", R.drawable.splash))
 
     }
