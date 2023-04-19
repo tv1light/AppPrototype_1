@@ -13,4 +13,10 @@ interface Dao {
     fun getItems(): List<Item>
     @Query("DELETE FROM Items")
     fun nukeTable()
+    @Insert
+    fun insertIngr(item: IngridDataBase)
+    @Query("SELECT * FROM Ingrid")
+    fun getAllIngr(): List<IngridDataBase>
+    @Query("DELETE FROM Ingrid")
+    fun nukeIngridTable()
 }

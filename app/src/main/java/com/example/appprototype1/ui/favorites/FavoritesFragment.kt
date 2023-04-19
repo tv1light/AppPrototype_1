@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.appprototype1.DataBase
+import com.example.appprototype1.IngridDataBase
 import com.example.appprototype1.Item
 import com.example.appprototype1.databinding.FragmentFavoritesBinding
 import com.example.appprototype1.ui.home.HomeFragment
@@ -36,9 +37,13 @@ class FavoritesFragment : Fragment() {
         binding.buttonSave.setOnClickListener{
             val it = Item(null,
                 binding.edCoct.text.toString(),
-                binding.edIngr.text.toString())
-            Thread{
+                "0")
+            Thread{ // Открытие потока для разделения
                 db.getDao().insertItem(it)
+            }.start()
+            val ing = IngridDataBase(null,binding.edIngr.text.toString(),100)
+            Thread{
+                db.getDao().insertIngr(ing)
             }.start()
         }
 

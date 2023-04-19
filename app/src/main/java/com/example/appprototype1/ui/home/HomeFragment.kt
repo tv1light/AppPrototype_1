@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
     private fun initializing(){
         cocktailsList = ArrayList<Cocktail>()
         Thread{
-            val s = DataBase.getDB(this)
+            val s = DataBase.getDB(this) // Считывание из бд коктейлей
             val db = s.getDao().getItems()
             for (i in db) {
                 cocktailsList.add(Cocktail(i.coct, R.drawable.splash))
