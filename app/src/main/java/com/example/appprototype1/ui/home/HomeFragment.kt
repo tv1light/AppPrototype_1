@@ -9,8 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appprototype1.Cocktail
+import com.example.appprototype1.DataBase
 import com.example.appprototype1.R
 import com.example.appprototype1.databinding.FragmentHomeBinding
+import com.example.appprototype1.ui.favorites.FavoritesFragment
 
 class HomeFragment : Fragment() {
 
@@ -46,6 +48,13 @@ class HomeFragment : Fragment() {
     }
     private fun initializing(){
         cocktailsList = ArrayList<Cocktail>()
+        Thread{
+            val s = DataBase.getDB(this)
+            val db = s.getDao().getItems()
+            for (i in db) {
+                cocktailsList.add(Cocktail(i.coct, R.drawable.splash))
+            }
+        }.start()
         cocktailsList.add(Cocktail("Long Island Iced Tea", R.drawable.splash))
         cocktailsList.add(Cocktail("Old Fashioned", R.drawable.splash))
         cocktailsList.add(Cocktail("Margarita", R.drawable.margarita))

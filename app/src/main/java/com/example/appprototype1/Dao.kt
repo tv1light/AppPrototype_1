@@ -10,7 +10,7 @@ interface Dao {
     @Insert
     fun insertItem(item: Item)
     @Query("SELECT * FROM Items")
-    fun getItems(): Flow<List<Item>>
+    fun getItems(): List<Item>
     @Query("DELETE FROM Items")
     fun nukeTable()
 }

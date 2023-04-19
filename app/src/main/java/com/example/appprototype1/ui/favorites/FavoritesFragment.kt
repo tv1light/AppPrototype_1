@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.appprototype1.DataBase
 import com.example.appprototype1.Item
 import com.example.appprototype1.databinding.FragmentFavoritesBinding
+import com.example.appprototype1.ui.home.HomeFragment
 
 class FavoritesFragment : Fragment() {
 
@@ -30,7 +31,7 @@ class FavoritesFragment : Fragment() {
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val db = DataBase.getDB(this)
+        val db = DataBase.getDB(HomeFragment())
 
         binding.buttonSave.setOnClickListener{
             val it = Item(null,
