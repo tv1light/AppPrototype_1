@@ -42,18 +42,20 @@ class HomeFragment : Fragment() {
         cocktailsRV.layoutManager = layoutManager
         cocktailRecipeAdapter = CocktailRecipeAdapter(cocktailsList, context)
         cocktailsRV.adapter = cocktailRecipeAdapter
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+
     }
     private fun initializing(){
         cocktailsList = ArrayList<Cocktail>()
         cocktailsList.add(Cocktail("Long Island Iced Tea", R.drawable.splash))
-        cocktailsList.add(Cocktail("Long Island Iced Tea1", R.drawable.splash))
-        cocktailsList.add(Cocktail("Long Island Iced Tea2", R.drawable.splash))
+        cocktailsList.add(Cocktail("Old Fashioned", R.drawable.splash))
+        cocktailsList.add(Cocktail("Margarita", R.drawable.margarita))
+        cocktailsList.add(Cocktail("Electric fizz", R.drawable.splash))
+        cocktailsList.add(Cocktail("Gray Hound", R.drawable.splash))
         cocktailsList.add(Cocktail("Long Island Iced Tea3", R.drawable.splash))
-
-
+        cocktailsList.add(Cocktail("Long Island Iced Tea3", R.drawable.margarita))
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
