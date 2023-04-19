@@ -48,6 +48,7 @@ class FavoritesFragment : Fragment() {
         binding.buttonNuke.setOnClickListener{
             Thread{
                 db.getDao().nukeTable()
+                db.getDao().nukeIngridTable()
             }.start()
         }
         return root
