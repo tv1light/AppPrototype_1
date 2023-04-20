@@ -60,7 +60,18 @@ class IngredientsFragment : Fragment() {
                 ingList.add(Ingredient(i.name, R.drawable.splash))
             }
         }.start()
-        ingList.add(Ingredient("Lemon", R.drawable.splash))
+        ingList.add(Ingredient("Lemon", R.drawable.lemon))
+        ingList.add(Ingredient("Orange", R.drawable.orange))
+        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
+        ingList.add(Ingredient("Jagermeister", R.drawable.jeger))
+        ingList.add(Ingredient("Coke", R.drawable.cocke))
+        ingList.add(Ingredient("Lemon", R.drawable.lemon))
+        ingList.add(Ingredient("Orange", R.drawable.orange))
+        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
+        ingList.add(Ingredient("Jagermeister", R.drawable.jeger))
+        ingList.add(Ingredient("Coke", R.drawable.cocke))
+        ingList.add(Ingredient("Lemon", R.drawable.lemon))
+
     }
 
     override fun onDestroyView() {

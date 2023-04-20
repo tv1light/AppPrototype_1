@@ -9,10 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appprototype1.Cocktail
-import com.example.appprototype1.DataBase
-import com.example.appprototype1.MainActivity2
-import com.example.appprototype1.R
+import com.example.appprototype1.*
 import com.example.appprototype1.databinding.FragmentHomeBinding
 
 
@@ -58,13 +55,18 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
                 cocktailsList.add(Cocktail(i.coct, R.drawable.splash))
             }
         }.start()
-        cocktailsList.add(Cocktail("Long Island Iced Tea", R.drawable.splash))
-        cocktailsList.add(Cocktail("Old Fashioned", R.drawable.splash))
-        cocktailsList.add(Cocktail("Margarita", R.drawable.margarita))
+        cocktailsList.add(Cocktail("Long Island Iced Tea", R.drawable.cock2))
+        cocktailsList.add(Cocktail("Old Fashioned", R.drawable.cock4))
+        cocktailsList.add(Cocktail("Margarita", R.drawable.cock3))
         cocktailsList.add(Cocktail("Electric fizz", R.drawable.splash))
-        cocktailsList.add(Cocktail("Gray Hound", R.drawable.splash))
-        cocktailsList.add(Cocktail("Long Island Iced Tea3", R.drawable.splash))
-        cocktailsList.add(Cocktail("Long Island Iced Tea3", R.drawable.margarita))
+        cocktailsList.add(Cocktail("Gray Hound", R.drawable.cock1))
+        cocktailsList.add(Cocktail("Long Island Iced Tea", R.drawable.cock2))
+        cocktailsList.add(Cocktail("Old Fashioned", R.drawable.cock4))
+        cocktailsList.add(Cocktail("Margarita", R.drawable.cock3))
+        cocktailsList.add(Cocktail("Electric fizz", R.drawable.splash))
+        cocktailsList.add(Cocktail("Gray Hound", R.drawable.cock1))
+
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
@@ -73,7 +75,7 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
 
     override fun onItemClick(position: Int) {
         val cocktail = cocktailsList[position]
-        val intent = Intent (getActivity(), MainActivity2::class.java)
+        val intent = Intent (getActivity(), CockSreen::class.java)
         startActivity(intent)
     }
 }
