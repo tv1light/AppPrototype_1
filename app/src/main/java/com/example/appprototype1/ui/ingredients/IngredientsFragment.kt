@@ -1,5 +1,6 @@
 package com.example.appprototype1.ui.ingredients
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,14 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appprototype1.Cocktail
-import com.example.appprototype1.DataBase
-import com.example.appprototype1.R
+import com.example.appprototype1.*
 import com.example.appprototype1.databinding.FragmentIngredientsBinding
-import com.example.appprototype1.Ingredient
 import com.example.appprototype1.ui.home.HomeFragment
 
-class IngredientsFragment : Fragment() {
+class IngredientsFragment : Fragment(), IngredientsAdapter.RecyclerViewEvent {
 
     private var _binding: FragmentIngredientsBinding? = null
 
@@ -46,7 +44,7 @@ class IngredientsFragment : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         ingredientsRV = view.findViewById(R.id.ingredientsRV)
         ingredientsRV.layoutManager = layoutManager
-        ingredientsAdapter = IngredientsAdapter(ingList, context)
+        ingredientsAdapter = IngredientsAdapter(ingList, this)
         ingredientsRV.adapter = ingredientsAdapter
     }
 
@@ -77,5 +75,11 @@ class IngredientsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onItemClick(position: Int) {
+        val ingredient = ingList[position]
+        val intent = Intent (getActivity(), CockSreen::class.java)
+        startActivity(intent)
     }
 }

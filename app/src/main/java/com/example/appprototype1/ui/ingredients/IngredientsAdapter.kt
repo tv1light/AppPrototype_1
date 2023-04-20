@@ -1,49 +1,61 @@
 package com.example.appprototype1.ui.ingredients
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.appprototype1.R
+import com.example.appprototype1.Cocktail
 import com.example.appprototype1.Ingredient
-
-
+import com.example.appprototype1.R
 class IngredientsAdapter(
-    private val ingList: ArrayList<Ingredient>,
-    private val context: Context?
-    ) : RecyclerView.Adapter<IngredientsAdapter.MyViewHolder>() {
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): IngredientsAdapter.MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.ingredient_item,
-            parent, false
-        )
-        return MyViewHolder(itemView)
+    private val data: List<Ingredient>,
+    private val listener: RecyclerViewEvent
+) : RecyclerView.Adapter<IngredientsAdapter.ItemViewHolder>() {
+
+    //Setup variables to hold the instance of the views defined in your recyclerView item layout
+    //Kinda like the onCreate method in an Activity
+    inner class ItemViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener {
+        val name: TextView = view.findViewById(R.id.textViewIng)
+        val image: ImageView = view.findViewById(R.id.imageViewIng)
+
+        init {
+            view.setOnClickListener(this)
+        }
+
+        override fun onClick(p0: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position)
+            }
+        }
     }
 
-    override fun onBindViewHolder(holder: IngredientsAdapter.MyViewHolder, position: Int) {
-        // on below line we are setting data to our text view and our image view.
-        holder.ingredientTV.text = ingList.get(position).name
-        holder.ingredientIV.setImageResource(ingList.get(position).image)
+    //This is where you inflate the layout (Give each entry/row its look)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+        val inflatedView: View = LayoutInflater.from(parent.context)
+            .inflate(R.layout.ingredient_item, parent, false)
+        return ItemViewHolder(inflatedView)
     }
 
+    // Set values to the views we pulled out of the recycler_view_row
+    // layout file based on the position of the recyclerView
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+        val ingredient: Ingredient = data[position]
+
+        holder.name.text = ingredient.name
+        holder.image.setImageResource(ingredient.image)
+    }
+
+    //The recyclerView just wants to know how many items are currently in your dataset
     override fun getItemCount(): Int {
-        // on below line we are
-        // returning our size of our list
-        return ingList.size
+        return data.size
     }
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // on below line we are initializing our course name text view and our image view.
-        val ingredientTV: TextView = itemView.findViewById(R.id.textViewIng)
-        val ingredientIV: ImageView = itemView.findViewById(R.id.imageViewIng)
+    interface RecyclerViewEvent{
+        fun onItemClick(position: Int)
     }
-
 }
 
 
