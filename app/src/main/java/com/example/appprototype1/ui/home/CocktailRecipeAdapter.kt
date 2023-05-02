@@ -56,5 +56,3 @@ class CocktailRecipeAdapter(
         fun onItemClick(position: Int)
     }
 }
-
-

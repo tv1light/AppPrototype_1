@@ -11,9 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appprototype1.CockSreen
+import com.example.appprototype1.DataBase
 import com.example.appprototype1.Ingredient
 import com.example.appprototype1.R
 import com.example.appprototype1.databinding.FragmentCartBinding
+import com.example.appprototype1.ui.home.HomeFragment
 import com.example.appprototype1.ui.ingredients.IngredientsAdapter
 
 class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
@@ -65,6 +67,13 @@ class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
     fun initializeIngredients()
     {
         ingList = ArrayList<Ingredient>()
+        Thread{
+            val s = DataBase.getDB(HomeFragment()) // Считывание из бд коктейлей
+            val db = s.getDao().getAllIngr()
+            for (i in db) {
+                ingList.add(Ingredient(i.name, R.drawable.splash))
+            }
+        }.start()
         ingList.add(Ingredient("Lemon", R.drawable.lemon))
         ingList.add(Ingredient("Orange", R.drawable.orange))
         ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
