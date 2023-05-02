@@ -31,26 +31,6 @@ class FavoritesFragment : Fragment() {
 
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val db = DataBase.getDB(HomeFragment())
-
-        binding.buttonSave.setOnClickListener{
-            val it = Item(null, binding.edCoct.text.toString(), "0")
-            Thread{ // Открытие потока для разделения
-                db.getDao().insertItem(it)
-            }.start()
-            val ing = IngridDataBase(null,binding.edIngr.text.toString(),100, 0)
-            Thread{
-                db.getDao().insertIngr(ing)
-            }.start()
-        }
-
-        binding.buttonNuke.setOnClickListener{
-            Thread{
-                db.getDao().nukeTable()
-                db.getDao().nukeIngridTable()
-            }.start()
-        }
         return root
     }
 

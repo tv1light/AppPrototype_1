@@ -5,18 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appprototype1.CockSreen
+import com.example.appprototype1.AddCocktailActivity
 import com.example.appprototype1.DataBase
 import com.example.appprototype1.Ingredient
 import com.example.appprototype1.R
 import com.example.appprototype1.databinding.FragmentCartBinding
 import com.example.appprototype1.ui.home.HomeFragment
-import com.example.appprototype1.ui.ingredients.IngredientsAdapter
 
 class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
 {
@@ -56,7 +54,7 @@ class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
     }
     override fun onItemClick(position: Int) {
         val ingredient = ingList[position]
-        val intent = Intent (getActivity(), CockSreen::class.java)
+        val intent = Intent (getActivity(), AddCocktailActivity::class.java)
         startActivity(intent)
     }
     override fun onDestroyView() {

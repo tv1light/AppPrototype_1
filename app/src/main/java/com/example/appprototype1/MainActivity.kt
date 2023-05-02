@@ -18,7 +18,7 @@ import com.example.appprototype1.databinding.ActivityMainBinding
 
 
 @Suppress("NAME_SHADOWING")
-class MainActivity : AppCompatActivity() {
+open class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 

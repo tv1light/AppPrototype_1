@@ -59,6 +59,7 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
                 cocktailsList.add(Cocktail(i.coct, R.drawable.splash))
             }
         }.start()
+        cocktailsList.add(Cocktail("Add Cocktail", R.drawable.plus))
         cocktailsList.add(Cocktail("Long Island Iced Tea", R.drawable.cock2))
         cocktailsList.add(Cocktail("Old Fashioned", R.drawable.cock4))
         cocktailsList.add(Cocktail("Margarita", R.drawable.cock3))
@@ -86,8 +87,15 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
     }
 
     override fun onItemClick(position: Int) {
-        val cocktail = cocktailsList[position]
-        val intent = Intent (getActivity(), CockSreen::class.java)
-        startActivity(intent)
+        if(position == 0)
+        {
+            val intent = Intent(getActivity(), AddCocktailActivity::class.java)
+            startActivity(intent)
+        }
+        else {
+            val cocktail = cocktailsList[position]
+            val intent = Intent(getActivity(), CocktailScreenActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

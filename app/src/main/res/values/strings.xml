@@ -59,4 +59,5 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="title_activity_main3">MainActivity3</string>
+    <string name="title_activity_add_cocktail">AddCocktail</string>
 </resources>
