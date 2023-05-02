@@ -32,24 +32,28 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
     ): View {
         val homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
         val root: View = binding.root
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initializing()
+        val s = DataBase.getDB(this) // Считывание из бд коктейлей
+
+        initializing(s)
         val layoutManager = GridLayoutManager(context, 2)
         cocktailsRV = view.findViewById(R.id.homeRV)
         cocktailsRV.layoutManager = layoutManager
         cocktailRecipeAdapter = CocktailRecipeAdapter(cocktailsList, this)
         cocktailsRV.adapter = cocktailRecipeAdapter
-
+//        if(binding.edSearch.text.toString()!= ""){
+//            searcher(binding.edSearch.text.toString(),s)
+//        }
     }
-    private fun initializing(){
+    private fun initializing(s : DataBase){
         cocktailsList = ArrayList<Cocktail>()
         Thread{
-            val s = DataBase.getDB(this) // Считывание из бд коктейлей
             val db = s.getDao().getItems()
             for (i in db) {
                 cocktailsList.add(Cocktail(i.coct, R.drawable.splash))
@@ -65,8 +69,16 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
         cocktailsList.add(Cocktail("Margarita", R.drawable.cock3))
         cocktailsList.add(Cocktail("Electric fizz", R.drawable.splash))
         cocktailsList.add(Cocktail("Gray Hound", R.drawable.cock1))
+    }
 
-
+    private fun searcher(search: String, s : DataBase){
+        cocktailsList = ArrayList<Cocktail>()
+        val db = s.getDao().getItems()
+        for (i in db) {
+            if (search in i.coct) {
+                cocktailsList.add(Cocktail(i.coct, R.drawable.splash))
+            }
+        }
     }
     override fun onDestroyView() {
         super.onDestroyView()

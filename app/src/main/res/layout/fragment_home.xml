@@ -7,6 +7,22 @@
     android:visibility="visible"
     tools:context=".ui.home.HomeFragment">
 
+<!--    <EditText-->
+<!--        android:id="@+id/edSearch"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:autofillHints=""-->
+<!--        android:ems="10"-->
+<!--        android:hint="@string/cocktail"-->
+
+<!--        android:inputType="textPersonName"-->
+<!--        android:minHeight="48dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.332"-->
+<!--        tools:ignore="MissingConstraints"/>-->
+
     <androidx.recyclerview.widget.RecyclerView
         android:foregroundGravity="center"
         android:id="@+id/homeRV"
