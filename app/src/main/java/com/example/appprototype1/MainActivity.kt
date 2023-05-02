@@ -1,6 +1,9 @@
 package com.example.appprototype1
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.SearchEvent
+import android.widget.SearchView
 import androidx.activity.compose.setContent
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -53,5 +56,14 @@ open class MainActivity : AppCompatActivity() {
 //(huy)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.nav_menu, menu)
+
+        val search = menu?.findItem(R.id.nav_search)
+        val searchView = search?.actionView as SearchView
+        searchView.queryHint = "Input request"
+        return super.onCreateOptionsMenu(menu)
     }
 }

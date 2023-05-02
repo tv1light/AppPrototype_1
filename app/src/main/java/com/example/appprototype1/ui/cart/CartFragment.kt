@@ -9,10 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appprototype1.AddCocktailActivity
-import com.example.appprototype1.DataBase
-import com.example.appprototype1.Ingredient
-import com.example.appprototype1.R
+import com.example.appprototype1.*
 import com.example.appprototype1.databinding.FragmentCartBinding
 import com.example.appprototype1.ui.home.HomeFragment
 
@@ -54,7 +51,7 @@ class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
     }
     override fun onItemClick(position: Int) {
         val ingredient = ingList[position]
-        val intent = Intent (getActivity(), AddCocktailActivity::class.java)
+        val intent = Intent (getActivity(), CocktailScreenActivity::class.java)
         startActivity(intent)
     }
     override fun onDestroyView() {
@@ -77,6 +74,5 @@ class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
         ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
         ingList.add(Ingredient("Jagermeister", R.drawable.jeger))
         ingList.add(Ingredient("Coke", R.drawable.cocke))
-        ingList.add(Ingredient("Lemon", R.drawable.lemon))
     }
 }
