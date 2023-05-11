@@ -1,5 +1,6 @@
 package com.example.appprototype1.ui.home
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appprototype1.*
+import com.example.appprototype1.DataBase.Companion.db
 import com.example.appprototype1.databinding.FragmentHomeBinding
 
 
@@ -50,6 +52,10 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
 //        if(binding.edSearch.text.toString()!= ""){
 //            searcher(binding.edSearch.text.toString(),s)
 //        }
+//        Thread{
+//            val str = "во"
+//            searcher(str, s)
+//        }.start()
     }
     private fun initializing(s : DataBase){
         cocktailsList = ArrayList<Cocktail>()
