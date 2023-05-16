@@ -57,12 +57,22 @@ class IngredientsFragment : Fragment(), IngredientsAdapter.RecyclerViewEvent {
                 ingList.add(Ingredient(i.name, R.drawable.splash))
             }
         }.start()
+        ingList.add(Ingredient("Add Ingredient", R.drawable.plus))
         ingList.add(Ingredient("Lemon", R.drawable.lemon))
         ingList.add(Ingredient("Orange", R.drawable.orange))
         ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
         ingList.add(Ingredient("Jagermeister", R.drawable.jeger))
         ingList.add(Ingredient("Coke", R.drawable.cocke))
         ingList.add(Ingredient("Lemon", R.drawable.lemon))
+        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
+        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
+        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
+        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
+        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
+        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
+        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
+        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
+
     }
 
     override fun onDestroyView() {
@@ -71,9 +81,18 @@ class IngredientsFragment : Fragment(), IngredientsAdapter.RecyclerViewEvent {
     }
 
     override fun onItemClick(position: Int) {
-        val ingredient = ingList[position]
-        val intent = Intent (getActivity(), CocktailScreenActivity::class.java)
+        if(position == 0)
+        {
+            val intent = Intent(getActivity(), AddIngredientActivity::class.java)
+            startActivity(intent)
+        }
+        else {
+            val ingredient = ingList[position]
+            val intent = Intent(getActivity(), IngredientScreenActivity::class.java)
+            intent.putExtra("ingredient", ingredient)
+            startActivity(intent)
 
-        startActivity(intent)
+        }
+
     }
 }

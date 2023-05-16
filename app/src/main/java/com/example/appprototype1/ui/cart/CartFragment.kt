@@ -51,7 +51,8 @@ class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
     }
     override fun onItemClick(position: Int) {
         val ingredient = ingList[position]
-        val intent = Intent (getActivity(), CocktailScreenActivity::class.java)
+        val intent = Intent (getActivity(), IngredientScreenActivity::class.java)
+        intent.putExtra("ingredient", ingredient)
         startActivity(intent)
     }
     override fun onDestroyView() {
@@ -74,5 +75,13 @@ class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
         ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
         ingList.add(Ingredient("Jagermeister", R.drawable.jeger))
         ingList.add(Ingredient("Coke", R.drawable.cocke))
+        ingList.add(Ingredient("Coke", R.drawable.cocke))
+        ingList.add(Ingredient("Coke", R.drawable.cocke))
+        ingList.add(Ingredient("Coke", R.drawable.cocke))
+        ingList.add(Ingredient("Coke", R.drawable.cocke))
+        ingList.add(Ingredient("Coke", R.drawable.cocke))
+        ingList.add(Ingredient("Coke", R.drawable.cocke))
+
+
     }
 }

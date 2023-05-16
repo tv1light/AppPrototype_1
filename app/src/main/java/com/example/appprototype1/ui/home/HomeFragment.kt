@@ -1,6 +1,5 @@
 package com.example.appprototype1.ui.home
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appprototype1.*
-import com.example.appprototype1.DataBase.Companion.db
 import com.example.appprototype1.databinding.FragmentHomeBinding
 
 
@@ -101,6 +99,7 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
         else {
             val cocktail = cocktailsList[position]
             val intent = Intent(getActivity(), CocktailScreenActivity::class.java)
+            intent.putExtra("cocktail", cocktail)
             startActivity(intent)
         }
     }

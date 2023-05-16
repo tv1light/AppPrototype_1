@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CocktailScreenActivity">
+    tools:context=".IngredientScreenActivity">
 
     <ImageView
-        android:id="@+id/cocktailScreenIm"
+        android:id="@+id/ingredientScreenIM"
         android:layout_width="250dp"
         android:layout_height="220dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cock2" />
+        app:srcCompat="@drawable/lemon" />
 </androidx.constraintlayout.widget.ConstraintLayout>
