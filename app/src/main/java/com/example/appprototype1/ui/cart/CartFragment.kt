@@ -13,6 +13,7 @@ import com.example.appprototype1.*
 import com.example.appprototype1.databinding.FragmentCartBinding
 import com.example.appprototype1.ui.home.HomeFragment
 
+
 class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
 {
 
@@ -24,7 +25,6 @@ class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
 
     lateinit var ingredientsRV: RecyclerView
     lateinit var ingredientsAdapter: CarAdapter
-    lateinit var ingList: ArrayList<Ingredient>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,7 +42,6 @@ class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initializeIngredients()
         val layoutManager = LinearLayoutManager(context)
         ingredientsRV = view.findViewById(R.id.cartRV)
         ingredientsRV.layoutManager = layoutManager
@@ -55,33 +54,16 @@ class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
         intent.putExtra("ingredient", ingredient)
         startActivity(intent)
     }
+
+    override fun onItemLongClick(position: Int) {
+        ingList.removeAt(position)
+        ingredientsRV.adapter?.notifyItemRemoved(position)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-    fun initializeIngredients()
-    {
-        ingList = ArrayList<Ingredient>()
-        Thread{
-            val s = DataBase.getDB(HomeFragment()) // Считывание из бд коктейлей
-            val db = s.getDao().getAllIngr()
-            for (i in db) {
-                ingList.add(Ingredient(i.name, R.drawable.splash))
-            }
-        }.start()
-        ingList.add(Ingredient("Lemon", R.drawable.lemon))
-        ingList.add(Ingredient("Orange", R.drawable.orange))
-        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
-        ingList.add(Ingredient("Jagermeister", R.drawable.jeger))
-        ingList.add(Ingredient("Coke", R.drawable.cocke))
-        ingList.add(Ingredient("Coke", R.drawable.cocke))
-        ingList.add(Ingredient("Coke", R.drawable.cocke))
-        ingList.add(Ingredient("Coke", R.drawable.cocke))
-        ingList.add(Ingredient("Coke", R.drawable.cocke))
-        ingList.add(Ingredient("Coke", R.drawable.cocke))
-        ingList.add(Ingredient("Coke", R.drawable.cocke))
 
-
-    }
 }

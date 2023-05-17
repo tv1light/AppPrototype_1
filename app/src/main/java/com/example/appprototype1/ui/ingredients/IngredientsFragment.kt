@@ -65,14 +65,6 @@ class IngredientsFragment : Fragment(), IngredientsAdapter.RecyclerViewEvent {
         ingList.add(Ingredient("Coke", R.drawable.cocke))
         ingList.add(Ingredient("Lemon", R.drawable.lemon))
         ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
-        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
-        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
-        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
-        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
-        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
-        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
-        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
-
     }
 
     override fun onDestroyView() {

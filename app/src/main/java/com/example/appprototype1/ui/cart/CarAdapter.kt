@@ -17,12 +17,13 @@ class CarAdapter(
 
     //Setup variables to hold the instance of the views defined in your recyclerView item layout
     //Kinda like the onCreate method in an Activity
-    inner class ItemViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener {
+    inner class ItemViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener, View.OnLongClickListener {
         val name: TextView = view.findViewById(R.id.textViewIng)
         val image: ImageView = view.findViewById(R.id.imageViewIng)
 
         init {
             view.setOnClickListener(this)
+            view.setOnLongClickListener(this)
         }
 
         override fun onClick(p0: View?) {
@@ -31,6 +32,15 @@ class CarAdapter(
                 listener.onItemClick(position)
             }
         }
+
+        override fun onLongClick(p0: View?): Boolean {
+            val position = adapterPosition
+            if(position != RecyclerView.NO_POSITION){
+                listener.onItemLongClick(position)
+            }
+            return true
+        }
+
     }
 
     //This is where you inflate the layout (Give each entry/row its look)
@@ -55,6 +65,7 @@ class CarAdapter(
 
     interface RecyclerViewEvent{
         fun onItemClick(position: Int)
+        fun onItemLongClick(position: Int)
     }
 }
 
