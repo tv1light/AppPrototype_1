@@ -23,7 +23,7 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
 
     lateinit var cocktailsRV: RecyclerView
     lateinit var cocktailRecipeAdapter: CocktailRecipeAdapter
-    lateinit var cocktailsList: ArrayList<Cocktail>
+    lateinit var cocktailsList: DataBase
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,9 +39,9 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val s = DataBase.getDB(this) // Считывание из бд коктейлей
+        cocktailsList = DataBase.getDB(this) // Считывание из бд коктейлей
+        initializing()
 
-        initializing(s)
         val layoutManager = GridLayoutManager(context, 2)
         cocktailsRV = view.findViewById(R.id.homeRV)
         cocktailsRV.layoutManager = layoutManager
@@ -55,36 +55,33 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
 //            searcher(str, s)
 //        }.start()
     }
-    private fun initializing(s : DataBase){
-        cocktailsList = ArrayList<Cocktail>()
+    private fun initializing(){
         Thread{
-            val db = s.getDao().getItems()
-            for (i in db) {
-                cocktailsList.add(Cocktail(i.coct, R.drawable.splash))
-            }
+            val db = cocktailsList.getDao()
+            db.insertItem(Item(null,"Add Cocktail", R.drawable.plus))
+            db.insertItem(Item(null,"Long Island Iced Tea", R.drawable.cock2))
+            db.insertItem(Item(null,"Old Fashioned", R.drawable.cock4))
+            db.insertItem(Item(null,"Margarita", R.drawable.cock3))
+            db.insertItem(Item(null,"Electric fizz", R.drawable.splash))
+            db.insertItem(Item(null,"Gray Hound", R.drawable.cock1))
+            db.insertItem(Item(null,"Long Island Iced Tea", R.drawable.cock2))
+            db.insertItem(Item(null,"Old Fashioned", R.drawable.cock4))
+            db.insertItem(Item(null,"Margarita", R.drawable.cock3))
+            db.insertItem(Item(null,"Electric fizz", R.drawable.splash))
+            db.insertItem(Item(null,"Gray Hound", R.drawable.cock1))
+
         }.start()
-        cocktailsList.add(Cocktail("Add Cocktail", R.drawable.plus))
-        cocktailsList.add(Cocktail("Long Island Iced Tea", R.drawable.cock2))
-        cocktailsList.add(Cocktail("Old Fashioned", R.drawable.cock4))
-        cocktailsList.add(Cocktail("Margarita", R.drawable.cock3))
-        cocktailsList.add(Cocktail("Electric fizz", R.drawable.splash))
-        cocktailsList.add(Cocktail("Gray Hound", R.drawable.cock1))
-        cocktailsList.add(Cocktail("Long Island Iced Tea", R.drawable.cock2))
-        cocktailsList.add(Cocktail("Old Fashioned", R.drawable.cock4))
-        cocktailsList.add(Cocktail("Margarita", R.drawable.cock3))
-        cocktailsList.add(Cocktail("Electric fizz", R.drawable.splash))
-        cocktailsList.add(Cocktail("Gray Hound", R.drawable.cock1))
     }
 
-    private fun searcher(search: String, s : DataBase){
-        cocktailsList = ArrayList<Cocktail>()
-        val db = s.getDao().getItems()
-        for (i in db) {
-            if (search in i.coct) {
-                cocktailsList.add(Cocktail(i.coct, R.drawable.splash))
-            }
-        }
-    }
+//    private fun searcher(search: String, s : DataBase){
+//        cocktailsList = ArrayList<Cocktail>()
+//        val db = s.getDao().getItems()
+//        for (i in db) {
+//            if (search in i.coct) {
+//                cocktailsList.add(Cocktail(i.coct, R.drawable.splash))
+//            }
+//        }
+//    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -97,7 +94,7 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
             startActivity(intent)
         }
         else {
-            val cocktail = cocktailsList[position]
+            val cocktail = cocktailsList.getDao().getItems().get(position).coct
             val intent = Intent(getActivity(), CocktailScreenActivity::class.java)
             intent.putExtra("cocktail", cocktail)
             startActivity(intent)

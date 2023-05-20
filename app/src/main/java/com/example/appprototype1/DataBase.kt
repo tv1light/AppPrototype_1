@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.appprototype1.ui.favorites.FavoritesFragment
 import com.example.appprototype1.ui.home.HomeFragment
 
-@Database(entities = [Item::class,IngridDataBase::class], version = 1)
+@Database(entities = [Item::class,IngridDataBase::class], version = 2)
 abstract class DataBase : RoomDatabase(){
 
     abstract fun getDao(): Dao
@@ -35,11 +35,8 @@ abstract class DataBase : RoomDatabase(){
                 context.requireContext(),
                 DataBase::class.java,
                 "DataBase.db"
-            ).allowMainThreadQueries().build()
+            ).fallbackToDestructiveMigration().allowMainThreadQueries().build()
             return db
         }
-
-
     }
 }
-

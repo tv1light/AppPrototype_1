@@ -7,9 +7,13 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.appprototype1.Cocktail
+import com.example.appprototype1.DataBase
+import com.example.appprototype1.Item
 import com.example.appprototype1.R
+import java.util.SplittableRandom
+
 class CocktailRecipeAdapter(
-    private val data: List<Cocktail>,
+    private val data: DataBase,
     private val listener: RecyclerViewEvent
 ) : RecyclerView.Adapter<CocktailRecipeAdapter.ItemViewHolder>() {
 
@@ -41,15 +45,19 @@ class CocktailRecipeAdapter(
     // Set values to the views we pulled out of the recycler_view_row
     // layout file based on the position of the recyclerView
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val cocktail: Cocktail = data[position]
-
-        holder.name.text = cocktail.name
-        holder.image.setImageResource(cocktail.image)
+        var cocktailName : String = ""
+        var cocktailImg : Int = 0
+        cocktailName = data.getDao().getItems().get(position).coct
+        cocktailImg = data.getDao().getItems().get(position).img
+        holder.name.text = cocktailName
+        holder.image.setImageResource(cocktailImg)
     }
 
     //The recyclerView just wants to know how many items are currently in your dataset
     override fun getItemCount(): Int {
-        return data.size
+        var size: Int = 0
+        size = data.getDao().getItems().size
+        return size
     }
 
     interface RecyclerViewEvent{

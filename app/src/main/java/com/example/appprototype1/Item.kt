@@ -11,5 +11,5 @@ data class Item (
     @ColumnInfo(name = "Name")
     var coct: String,
     @ColumnInfo(name = "Images")
-    var img: String,
+    var img: Int,
 )

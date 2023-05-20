@@ -19,7 +19,7 @@ class AddCocktailActivity : AppCompatActivity() {
         binding = ActivityCockSreenBinding.inflate(layoutInflater)
 
         binding.buttonSave.setOnClickListener {
-            val cock = Item(null, binding.edCoct.text.toString(), "0")
+            val cock = Item(null, binding.edCoct.text.toString(), 0)
             Thread { // Открытие потока для разделения
                 db.getDao().insertItem(cock)
             }.start()
