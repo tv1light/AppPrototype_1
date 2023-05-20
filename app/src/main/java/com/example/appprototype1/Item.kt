@@ -8,8 +8,28 @@ import androidx.room.PrimaryKey
 data class Item (
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
+
     @ColumnInfo(name = "Name")
-    var coct: String,
-    @ColumnInfo(name = "Images")
-    var img: Int,
+    val name: String = "test", //Название
+
+    @ColumnInfo(name = "Image")
+    val image: Int = 0, // картинка
+
+    @ColumnInfo(name = "Cocktail Type")
+    val cocktailType: String = "test", // Типы, хз сам если что поправишь
+
+    @ColumnInfo(name = "Create Instructions")
+    val createInstructions: String = "test", // Способ приготовления
+
+    @ColumnInfo(name = "Ingredients Array")
+    val ingredArr: ArrayList<String> = arrayListOf(""), // Необходимые ингридиенты и количество для 1 коктейля
+
+    @ColumnInfo(name = "Volume Ingredients")
+    val volArr: ArrayList<String> = arrayListOf(""),
+
+    @ColumnInfo(name = "Ready Flag")
+    val readyFlag: Boolean = false,// флаг возможности приготовления
+
+    @ColumnInfo(name = "Favor Flag")
+    val favorFlag: Boolean = false
 )

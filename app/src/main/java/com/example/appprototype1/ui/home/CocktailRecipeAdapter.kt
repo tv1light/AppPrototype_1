@@ -47,8 +47,8 @@ class CocktailRecipeAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         var cocktailName : String = ""
         var cocktailImg : Int = 0
-        cocktailName = data.getDao().getItems().get(position).coct
-        cocktailImg = data.getDao().getItems().get(position).img
+        cocktailName = data.getDao().getItems().get(position).name
+        cocktailImg = data.getDao().getItems().get(position).image
         holder.name.text = cocktailName
         holder.image.setImageResource(cocktailImg)
     }

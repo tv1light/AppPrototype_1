@@ -12,7 +12,7 @@ data class Cocktail(
 //    val readyFlag: Boolean,// флаг возможности приготовления
 //    val favorFlag: Boolean // флаг заметки
 ): Parcelable{
-//    fun Cocktail_created(){
+    //    fun Cocktail_created(){
 //        if(readyFlag){
 //            for(i in ingridArr){} //берём данные из бд и вычитаем то что в строке 7 //Пока в теории тк бд нет
 //        }

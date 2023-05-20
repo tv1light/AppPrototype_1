@@ -58,18 +58,19 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
     private fun initializing(){
         Thread{
             val db = cocktailsList.getDao()
-            db.insertItem(Item(null,"Add Cocktail", R.drawable.plus))
-            db.insertItem(Item(null,"Long Island Iced Tea", R.drawable.cock2))
-            db.insertItem(Item(null,"Old Fashioned", R.drawable.cock4))
-            db.insertItem(Item(null,"Margarita", R.drawable.cock3))
-            db.insertItem(Item(null,"Electric fizz", R.drawable.splash))
-            db.insertItem(Item(null,"Gray Hound", R.drawable.cock1))
-            db.insertItem(Item(null,"Long Island Iced Tea", R.drawable.cock2))
-            db.insertItem(Item(null,"Old Fashioned", R.drawable.cock4))
-            db.insertItem(Item(null,"Margarita", R.drawable.cock3))
-            db.insertItem(Item(null,"Electric fizz", R.drawable.splash))
-            db.insertItem(Item(null,"Gray Hound", R.drawable.cock1))
-
+            if(db.getItems().size == 0) {
+                db.insertItem(Item(null, "Add Cocktail", R.drawable.plus))
+                db.insertItem(Item(null, "Long Island Iced Tea", R.drawable.cock2, ingredArr = arrayListOf("tea","ice","long", "island")))
+                db.insertItem(Item(null, "Old Fashioned", R.drawable.cock4))
+                db.insertItem(Item(null, "Margarita", R.drawable.cock3))
+                db.insertItem(Item(null, "Electric fizz", R.drawable.splash))
+                db.insertItem(Item(null, "Gray Hound", R.drawable.cock1))
+                db.insertItem(Item(null, "Long Island Iced Tea", R.drawable.cock2))
+                db.insertItem(Item(null, "Old Fashioned", R.drawable.cock4))
+                db.insertItem(Item(null, "Margarita", R.drawable.cock3))
+                db.insertItem(Item(null, "Electric fizz", R.drawable.splash))
+                db.insertItem(Item(null, "Gray Hound", R.drawable.cock1))
+            }
         }.start()
     }
 
@@ -94,7 +95,7 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
             startActivity(intent)
         }
         else {
-            val cocktail = cocktailsList.getDao().getItems().get(position).coct
+            val cocktail = cocktailsList.getDao().getItems().get(position).name
             val intent = Intent(getActivity(), CocktailScreenActivity::class.java)
             intent.putExtra("cocktail", cocktail)
             startActivity(intent)
