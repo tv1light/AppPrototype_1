@@ -16,13 +16,8 @@ import com.example.appprototype1.ui.home.HomeFragment
 
 class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
 {
-
     private var _binding: FragmentCartBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
-
     lateinit var ingredientsRV: RecyclerView
     lateinit var ingredientsAdapter: CarAdapter
 
@@ -31,12 +26,9 @@ class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val cartViewModel =
-            ViewModelProvider(this).get(CartViewModel::class.java)
-
+        val cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java)
         _binding = FragmentCartBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
         return root
     }
 
@@ -64,6 +56,4 @@ class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
         super.onDestroyView()
         _binding = null
     }
-
-
 }

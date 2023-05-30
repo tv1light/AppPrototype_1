@@ -24,25 +24,14 @@ import com.example.appprototype1.ui.home.HomeFragment
 
 @Suppress("NAME_SHADOWING")
 open class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen().apply { //Сплэш скрин установка
-        }
-
+        installSplashScreen().apply { }
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-//       val it = Item(null,"Bloody Mary", "Vodka") //тестовая херь, думаю будет удобнее её в отдельное окно вынести
-
-        initializeIngredients() //initialize ingredients
-        initializeIng2()
         val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -53,12 +42,6 @@ open class MainActivity : AppCompatActivity() {
                 R.id.navigation_menu
             )
         )
-
-
-//        db.clearAllTables()
-
-//lade podklyuchili git, ura
-//(huy)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
@@ -70,20 +53,6 @@ open class MainActivity : AppCompatActivity() {
         searchView.queryHint = "Input request"
         return super.onCreateOptionsMenu(menu)
     }
-
-    fun initializeIngredients()
-    {
-
-        Thread{
-            val s = DataBase.getDB(HomeFragment()) // Считывание из бд коктейлей
-            val db = s.getDao().getAllIngr()
-            for (i in db) {
-                ingList.add(Ingredient(i.name, R.drawable.splash))
-            }
-        }.start()
-    }
-
-
 }
 
 var ingList: ArrayList<Ingredient> = initializeIng2()

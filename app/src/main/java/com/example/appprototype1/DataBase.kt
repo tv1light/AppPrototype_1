@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.example.appprototype1.ui.favorites.FavoritesFragment
 import com.example.appprototype1.ui.home.HomeFragment
 
-@Database(entities = [Item::class,IngridDataBase::class], version = 4, exportSchema = false)
+@Database(entities = [Item::class,IngridDataBase::class], version = 5, exportSchema = false)
 @TypeConverters(ArrayTypeAdapter::class)
 abstract class DataBase : RoomDatabase(){
 
@@ -17,7 +17,7 @@ abstract class DataBase : RoomDatabase(){
     companion object{
 
         lateinit var db: DataBase
-        fun inDB(context: AddCocktailActivity): DataBase{
+        fun inDB(context: Context): DataBase{
             if (this::db.isInitialized){
                 return db
             }

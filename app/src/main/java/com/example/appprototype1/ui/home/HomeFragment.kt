@@ -18,7 +18,6 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
 
     private var _binding: FragmentHomeBinding? = null
 
-
     private val binding get() = _binding!!
 
     lateinit var cocktailsRV: RecyclerView
@@ -42,6 +41,7 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
         cocktailsList = DataBase.getDB(this) // Считывание из бд коктейлей
         initializing()
 
+
         val layoutManager = GridLayoutManager(context, 2)
         cocktailsRV = view.findViewById(R.id.homeRV)
         cocktailsRV.layoutManager = layoutManager
@@ -59,12 +59,6 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
         Thread{
             val db = cocktailsList.getDao()
             if(db.getItems().size == 0) {
-                db.insertItem(Item(null, "Add Cocktail", R.drawable.plus))
-                db.insertItem(Item(null, "Long Island Iced Tea", R.drawable.cock2, ingredArr = arrayListOf("tea","ice","long", "island")))
-                db.insertItem(Item(null, "Old Fashioned", R.drawable.cock4))
-                db.insertItem(Item(null, "Margarita", R.drawable.cock3))
-                db.insertItem(Item(null, "Electric fizz", R.drawable.splash))
-                db.insertItem(Item(null, "Gray Hound", R.drawable.cock1))
                 db.insertItem(Item(null, "Long Island Iced Tea", R.drawable.cock2))
                 db.insertItem(Item(null, "Old Fashioned", R.drawable.cock4))
                 db.insertItem(Item(null, "Margarita", R.drawable.cock3))
@@ -89,16 +83,9 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
     }
 
     override fun onItemClick(position: Int) {
-        if(position == 0)
-        {
-            val intent = Intent(getActivity(), AddCocktailActivity::class.java)
-            startActivity(intent)
-        }
-        else {
-            val cocktail = cocktailsList.getDao().getItems().get(position).name
+            val cocktail = cocktailsList.getDao().getItems().get(position)
             val intent = Intent(getActivity(), CocktailScreenActivity::class.java)
             intent.putExtra("cocktail", cocktail)
             startActivity(intent)
-        }
     }
 }
