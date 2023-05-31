@@ -18,6 +18,7 @@ class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
 {
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
+    lateinit var ingList: DataBase
     lateinit var ingredientsRV: RecyclerView
     lateinit var ingredientsAdapter: CarAdapter
 
@@ -37,19 +38,19 @@ class CartFragment : Fragment(), CarAdapter.RecyclerViewEvent
         val layoutManager = LinearLayoutManager(context)
         ingredientsRV = view.findViewById(R.id.cartRV)
         ingredientsRV.layoutManager = layoutManager
+        ingList = DataBase.getDB(context)
         ingredientsAdapter = CarAdapter(ingList, this)
         ingredientsRV.adapter = ingredientsAdapter
     }
     override fun onItemClick(position: Int) {
-        val ingredient = ingList[position]
+        val ingredient = ingList.getDao().getAllIngr().get(position)
         val intent = Intent (getActivity(), IngredientScreenActivity::class.java)
         intent.putExtra("ingredient", ingredient)
         startActivity(intent)
     }
 
     override fun onItemLongClick(position: Int) {
-        ingList.removeAt(position)
-        ingredientsRV.adapter?.notifyItemRemoved(position)
+        //ingredientsRV.adapter?.notifyItemRemoved(position)
     }
 
     override fun onDestroyView() {

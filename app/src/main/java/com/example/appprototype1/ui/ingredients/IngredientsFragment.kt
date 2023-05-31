@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appprototype1.*
 import com.example.appprototype1.databinding.FragmentIngredientsBinding
-import com.example.appprototype1.ui.home.HomeFragment
 
 class IngredientsFragment : Fragment(), IngredientsAdapter.RecyclerViewEvent {
 
@@ -23,7 +22,7 @@ class IngredientsFragment : Fragment(), IngredientsAdapter.RecyclerViewEvent {
 
     lateinit var ingredientsRV: RecyclerView
     lateinit var ingredientsAdapter: IngredientsAdapter
-    lateinit var ingList: ArrayList<Ingredient>
+    lateinit var ingList: DataBase
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,31 +38,12 @@ class IngredientsFragment : Fragment(), IngredientsAdapter.RecyclerViewEvent {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initializeIngredients()
+        ingList = DataBase.getDB(context)
         val layoutManager = LinearLayoutManager(context)
         ingredientsRV = view.findViewById(R.id.ingredientsRV)
         ingredientsRV.layoutManager = layoutManager
         ingredientsAdapter = IngredientsAdapter(ingList, this)
         ingredientsRV.adapter = ingredientsAdapter
-    }
-
-    private fun initializeIngredients()
-    {
-        ingList = ArrayList<Ingredient>()
-        Thread{
-            val s = DataBase.getDB(HomeFragment()) // Считывание из бд коктейлей
-            val db = s.getDao().getAllIngr()
-            for (i in db) {
-                ingList.add(Ingredient(i.name, R.drawable.splash))
-            }
-        }.start()
-        ingList.add(Ingredient("Lemon", R.drawable.lemon))
-        ingList.add(Ingredient("Orange", R.drawable.orange))
-        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
-        ingList.add(Ingredient("Jagermeister", R.drawable.jeger))
-        ingList.add(Ingredient("Coke", R.drawable.cocke))
-        ingList.add(Ingredient("Lemon", R.drawable.lemon))
-        ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
     }
 
     override fun onDestroyView() {
@@ -72,8 +52,8 @@ class IngredientsFragment : Fragment(), IngredientsAdapter.RecyclerViewEvent {
     }
 
     override fun onItemClick(position: Int) {
-            val ingredient = ingList[position]
-            val intent = Intent(getActivity(), IngredientScreenActivity::class.java)
+            val ingredient = ingList.getDao().getAllIngr().get(position)
+            val intent = Intent(activity, IngredientScreenActivity::class.java)
             intent.putExtra("ingredient", ingredient)
             startActivity(intent)
     }

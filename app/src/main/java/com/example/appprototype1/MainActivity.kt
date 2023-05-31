@@ -20,6 +20,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.appprototype1.databinding.ActivityMainBinding
 import com.example.appprototype1.ui.cart.CartFragment
 import com.example.appprototype1.ui.home.HomeFragment
+import kotlin.concurrent.thread
 
 
 @Suppress("NAME_SHADOWING")
@@ -27,6 +28,8 @@ open class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        ingredientsInit()
+        cocktailsInit()
         installSplashScreen().apply { }
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -44,6 +47,7 @@ open class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -53,14 +57,33 @@ open class MainActivity : AppCompatActivity() {
         searchView.queryHint = "Input request"
         return super.onCreateOptionsMenu(menu)
     }
-}
 
-var ingList: ArrayList<Ingredient> = initializeIng2()
-fun initializeIng2(): ArrayList<Ingredient>
-{
-    ingList = ArrayList<Ingredient>()
-    ingList.add(Ingredient("Coke", R.drawable.cocke))
-    ingList.add(Ingredient("Lemon", R.drawable.lemon))
-    ingList.add(Ingredient("Whiskey", R.drawable.whiskey))
-    return ingList
+    fun ingredientsInit()
+    {
+        val ingList: DataBase = DataBase.getDB(this)
+
+            val db = ingList.getDao()
+            if(db.getAllIngr().size == 0) {
+                db.insertIngr(IngridDataBase(0, "Lemon", R.drawable.lemon, 0, true))
+                db.insertIngr(IngridDataBase(1, "Orange", R.drawable.orange, 0, false))
+//                db.insertIngr(IngridDataBase(null, "Whiskey", R.drawable.whiskey))
+//                db.insertIngr(IngridDataBase(null, "Jagermeister", R.drawable.jeger))
+//                db.insertIngr(IngridDataBase(null, "Coke", R.drawable.cocke))
+//                db.insertIngr(IngridDataBase(0, "Lemon", R.drawable.lemon))
+//                db.insertIngr(IngridDataBase(0, "Whiskey", R.drawable.whiskey))
+            }
+    }
+    private fun cocktailsInit(){
+        val cockList: DataBase = DataBase.getDB(this)
+
+            val db = cockList.getDao()
+            if(db.getItems().size == 0) {
+                db.insertItem(Item(null, "Long Island Iced Tea", R.drawable.cock2))
+                db.insertItem(Item(null, "Old Fashioned", R.drawable.cock4))
+                db.insertItem(Item(null, "Margarita", R.drawable.cock3))
+                db.insertItem(Item(null, "Electric fizz", R.drawable.splash))
+                db.insertItem(Item(null, "Gray Hound", R.drawable.cock1))
+            }
+
+    }
 }

@@ -8,13 +8,13 @@ class IngredientScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ingredient_screen)
-        val ingredient = intent.getParcelableExtra<Ingredient>("ingredient")
+        val ingredient = intent.getParcelableExtra<IngridDataBase>("ingredient")
         if(ingredient != null)
         {
             val imageView : ImageView = findViewById(R.id.ingredientScreenIM)
             imageView.setImageResource(ingredient.image)
 
-            setTitle(ingredient.name)
+            title = ingredient.name
         }
     }
 }
