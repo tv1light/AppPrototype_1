@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:backgroundTintMode="screen"
-                android:text="Long Island Iced Tea"
+                android:text = "Long Island Iced Tea"
                 android:textAlignment="center"
                 android:textColor="?android:attr/colorAccent"
                 android:textStyle="bold"
@@ -45,11 +45,26 @@
                 android:layout_width="135dp"
                 android:layout_height="135dp"
                 android:layout_marginBottom="9dp"
+                android:background="#009C9B9B"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/margarita"
                 tools:ignore="ContentDescription" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="34dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="6dp"
+                android:buttonTint="#058579"
+                android:checked="true"
+                android:clickable="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.729"
+                app:layout_constraintStart_toEndOf="@+id/textView2"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

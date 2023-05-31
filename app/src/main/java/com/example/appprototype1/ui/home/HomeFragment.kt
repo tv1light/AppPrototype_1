@@ -15,11 +15,8 @@ import com.example.appprototype1.databinding.FragmentHomeBinding
 
 
 class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
-
     private var _binding: FragmentHomeBinding? = null
-
     private val binding get() = _binding!!
-
     lateinit var cocktailsRV: RecyclerView
     lateinit var cocktailRecipeAdapter: CocktailRecipeAdapter
     lateinit var cocktailsList: DataBase
@@ -38,10 +35,8 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        cocktailsList = DataBase.getDB(this) // Считывание из бд коктейлей
-        initializing()
-
-
+         // Считывание из бд коктейлей
+        cocktailsList = DataBase.getDB(context)
         val layoutManager = GridLayoutManager(context, 2)
         cocktailsRV = view.findViewById(R.id.homeRV)
         cocktailsRV.layoutManager = layoutManager
@@ -54,18 +49,6 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
 //            val str = "во"
 //            searcher(str, s)
 //        }.start()
-    }
-    private fun initializing(){
-        Thread{
-            val db = cocktailsList.getDao()
-            if(db.getItems().size == 0) {
-                db.insertItem(Item(null, "Long Island Iced Tea", R.drawable.cock2))
-                db.insertItem(Item(null, "Old Fashioned", R.drawable.cock4))
-                db.insertItem(Item(null, "Margarita", R.drawable.cock3))
-                db.insertItem(Item(null, "Electric fizz", R.drawable.splash))
-                db.insertItem(Item(null, "Gray Hound", R.drawable.cock1))
-            }
-        }.start()
     }
 
 //    private fun searcher(search: String, s : DataBase){
@@ -83,9 +66,10 @@ class HomeFragment : Fragment(), CocktailRecipeAdapter.RecyclerViewEvent {
     }
 
     override fun onItemClick(position: Int) {
-            val cocktail = cocktailsList.getDao().getItems().get(position)
+//            val cocktail = cocktailsList.getDao().getItems().get(position)
             val intent = Intent(getActivity(), CocktailScreenActivity::class.java)
-            intent.putExtra("cocktail", cocktail)
+            intent.putExtra("position", position)
             startActivity(intent)
     }
 }
+

@@ -6,12 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.appprototype1.Cocktail
-import com.example.appprototype1.Ingredient
-import com.example.appprototype1.R
+import com.example.appprototype1.*
 
 class CarAdapter(
-    private val data: List<Ingredient>,
+    private val data: DataBase,
     private val listener: RecyclerViewEvent
 ) : RecyclerView.Adapter<CarAdapter.ItemViewHolder>() {
 
@@ -40,9 +38,7 @@ class CarAdapter(
             }
             return true
         }
-
     }
-
     //This is where you inflate the layout (Give each entry/row its look)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val inflatedView: View = LayoutInflater.from(parent.context)
@@ -53,14 +49,14 @@ class CarAdapter(
     // Set values to the views we pulled out of the recycler_view_row
     // layout file based on the position of the recyclerView
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val ingredient: Ingredient = data[position]
+        val ingredient: IngridDataBase = data.getDao().getAllIngr().get(position)
         holder.name.text = ingredient.name
         holder.image.setImageResource(ingredient.image)
     }
 
     //The recyclerView just wants to know how many items are currently in your dataset
     override fun getItemCount(): Int {
-        return data.size
+        return data.getDao().getAllIngr().size
     }
 
     interface RecyclerViewEvent{

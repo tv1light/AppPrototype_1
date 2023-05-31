@@ -44,14 +44,14 @@
                 tools:listitem="@layout/recycler_item" />
 
             <ImageView
-                    android:id="@+id/imageViewIng"
-                    android:layout_width="85dp"
-                    android:layout_height="86dp"
-                    android:layout_margin="5dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_ingredients_black_24dp" />
+                android:id="@+id/imageViewIng"
+                android:layout_width="85dp"
+                android:layout_height="86dp"
+                android:layout_margin="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_ingredients_black_24dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,7 @@ package com.example.appprototype1
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import kotlinx.coroutines.flow.Flow
+
 
 @Dao
 interface Dao {
@@ -19,4 +19,6 @@ interface Dao {
     fun getAllIngr(): List<IngridDataBase>
     @Query("DELETE FROM Ingrid")
     fun nukeIngridTable()
+    @Query("UPDATE Ingrid SET inBar = :tinBar WHERE id = :tid")
+    fun updateIngBool(tinBar: Boolean, tid: Int?)
 }

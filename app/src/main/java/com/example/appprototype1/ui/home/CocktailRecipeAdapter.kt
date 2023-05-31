@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.appprototype1.Cocktail
+import androidx.cardview.widget.CardView
 import com.example.appprototype1.DataBase
-import com.example.appprototype1.Item
 import com.example.appprototype1.R
-import java.util.SplittableRandom
+import com.google.android.material.card.MaterialCardView
 
 class CocktailRecipeAdapter(
     private val data: DataBase,
@@ -22,7 +22,7 @@ class CocktailRecipeAdapter(
     inner class ItemViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener {
         val name: TextView = view.findViewById(R.id.textView2)
         val image: ImageView = view.findViewById(R.id.imageView)
-
+        val checkBox: CheckBox = view.findViewById(R.id.checkBox)
         init {
             view.setOnClickListener(this)
         }
@@ -45,12 +45,19 @@ class CocktailRecipeAdapter(
     // Set values to the views we pulled out of the recycler_view_row
     // layout file based on the position of the recyclerView
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        var cocktailName : String = ""
-        var cocktailImg : Int = 0
-        cocktailName = data.getDao().getItems().get(position).name
-        cocktailImg = data.getDao().getItems().get(position).image
-        holder.name.text = cocktailName
-        holder.image.setImageResource(cocktailImg)
+        val cocktail = data.getDao().getItems().get(position)
+        holder.name.text = cocktail.name
+        holder.image.setImageResource(cocktail.image)
+        var flag: Boolean = false
+//        for (i in cocktail.ingredArr)
+//        {
+//            var flag = false
+//            if(data.getDao().getAllIngr().get(i).inBar)
+//            {
+//                flag = true
+//            }
+//        }
+        holder.checkBox.isChecked = flag
     }
 
     //The recyclerView just wants to know how many items are currently in your dataset
