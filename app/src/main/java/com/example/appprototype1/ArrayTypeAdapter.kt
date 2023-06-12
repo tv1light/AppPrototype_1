@@ -4,22 +4,22 @@ import androidx.room.TypeConverter
 
 class ArrayTypeAdapter {
     @TypeConverter
-    fun fromArray(ingredArr: ArrayList<String>) :String{
+    fun fromArray(ingredArr: ArrayList<Int>) :String{
         var out : String = ""
         for(i in ingredArr){
-            out+=i
+            out+=i.toString()
             out+=","
         }
         return out
     }
 
     @TypeConverter
-    fun toArray(data : String) : ArrayList<String>{
-        var out : ArrayList<String> = arrayListOf()
+    fun toArray(data : String) : ArrayList<Int>{
+        var out : ArrayList<Int> = arrayListOf()
         var ind : String = ""
         for (i in data){
             if(i == ','){
-                out.add(ind)
+                out.add(ind.toInt())
                 ind=""
             }
             else{

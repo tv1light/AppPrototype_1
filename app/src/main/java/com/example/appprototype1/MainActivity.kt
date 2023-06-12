@@ -83,19 +83,20 @@ open class MainActivity : AppCompatActivity() {
                         "\n" +
                         "3) Garnish with a lemon wedge.\n" +
                         "\n" +
-                        "4) Serve with a straw."))
+                        "4) Serve with a straw.", ingredArr = arrayListOf(1,2,3)
+                ))
                 db.insertItem(Item(2, "Old Fashioned", R.drawable.cock4,"1) Add the sugar and bitters into a mixing glass, then add the water, and stir until the sugar is nearly dissolved.\n" +
                         "\n" +
                         "2) Fill the mixing glass with ice, add the bourbon, and stir until well-chilled.\n" +
                         "\n" +
                         "3) Strain into a rocks glass over one large ice cube.\n" +
                         "\n" +
-                        "4) Express the oil of an orange twist over the glass, then drop into the glass to garnish."))
+                        "4) Express the oil of an orange twist over the glass, then drop into the glass to garnish.",ingredArr = arrayListOf(1,2,3)))
                 db.insertItem(Item(3, "Margarita", R.drawable.cock3, "1) Add tequila, orange liqueur, lime juice and agave syrup to a cocktail shaker filled with ice, and shake until well-chilled.\n" +
                         "\n" +
                         "2) Strain into a rocks glass over fresh ice.\n" +
                         "\n" +
-                        "3) Garnish with a lime wheel and kosher salt rim (optional)."))
+                        "3) Garnish with a lime wheel and kosher salt rim (optional).",ingredArr = arrayListOf(1,3)))
                 db.insertItem(Item(4, "Electric fizz", R.drawable.splash, "Add the vodka, rum, tequila, gin, triple sec, simple syrup and lemon juice to a Collins glass filled with ice.\n" +
                         "\n" +
                         "Top with a splash of the cola and stir briefly.\n" +

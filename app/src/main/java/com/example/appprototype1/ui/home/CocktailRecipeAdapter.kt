@@ -49,14 +49,15 @@ class CocktailRecipeAdapter(
         holder.name.text = cocktail.name
         holder.image.setImageResource(cocktail.image)
         var flag: Boolean = false
-//        for (i in cocktail.ingredArr)
-//        {
-//            var flag = false
-//            if(data.getDao().getAllIngr().get(i).inBar)
-//            {
-//                flag = true
-//            }
-//        }
+        for (i in cocktail.ingredArr)
+        {
+            flag = true
+            if(!data.getDao().getAllIngr().get(i).inBar)
+            {
+                flag = false
+                break
+            }
+        }
         holder.checkBox.isChecked = flag
     }
 

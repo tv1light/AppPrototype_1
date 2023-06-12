@@ -23,8 +23,8 @@ data class Item (
     @ColumnInfo(name = "Create Instructions")
     val createInstructions: String = "test", // Способ приготовления
 
-//    @ColumnInfo(name = "Ingredients Array")
-//    val ingredArr: ArrayList<Int> = arrayListOf(), // Необходимые ингридиенты и количество для 1 коктейля
+    @ColumnInfo(name = "Ingredients Array")
+    val ingredArr: ArrayList<Int> = arrayListOf(), // Необходимые ингридиенты и количество для 1 коктейля
 
 //    @ColumnInfo(name = "Volume Ingredients")
 //    val volArr: ArrayList<String> = arrayListOf(""),
